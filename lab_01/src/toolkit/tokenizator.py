@@ -1,5 +1,6 @@
 from .errors import CalcError
 
+#основное тело токенизатора, посимвольный анализ выражения
 def tokenize(expression):
     token = []
     i = 0
@@ -27,11 +28,9 @@ def tokenize(expression):
         else:
             pass
             raise CalcError(f"Недопустимый символ: {ch!r}")
-            #Кастомные ошибки прописать здесь надо
     return token
 
 #Функция перевода токеннизированного выражения в обратную польскую запись
-
 def RPN(token):
     PRIORITY = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2, "//": 2, "u-":3, "u+":3}
     output = []

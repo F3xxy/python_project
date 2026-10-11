@@ -1,5 +1,5 @@
 from .errors import CalcError
-
+#основное тело валидатора
 def validate(tokens):
     if not tokens:
         raise CalcError("Введено пустое выражение!")

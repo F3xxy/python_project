@@ -10,10 +10,10 @@ def evaluate_rpn(rpn):
         if isinstance(item, float):
             stack.append(item)
         else:
-            if item == 'u-':
+            if item == 'u-': #если унарный "-" то меняем знак в стеке
                 a = stack.pop()
                 stack.append(-a)
-            elif item == 'u+':
+            elif item == 'u+': #если унарный "+" то знак остаётся
                 pass
             else:
                 b = stack.pop()
@@ -31,7 +31,7 @@ def mark_unar(tokens):
     pred = None
     for kind, value in tokens:
         if kind == 'oper' and value in ('-', '+') and (pred is None or pred[0] == 'oper' or pred[1] == '('):
-            result.append((kind, 'u'+value))
+            result.append((kind, 'u'+value)) #склеивание знака перед операндом
         else:
             result.append((kind, value))
         pred = (kind, value)
