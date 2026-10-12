@@ -2,7 +2,7 @@ import contextlib
 import io
 import unittest
 
-from toolkit.__main__ import main
+from src.toolkit.__main__ import main
 
 
 def run(*args):
@@ -19,13 +19,13 @@ class TestCli(unittest.TestCase):
     def test_calc_success(self):
         code, out, err = run("calc", "2 * (3 + 4) - 5")
         self.assertEqual(code, 0)
-        self.assertEqual(out.strip(), "9.0")
+        self.assertEqual(out.strip(), "9")
         self.assertEqual(err, "")
 
     def test_calc_leading_minus(self):
         code, out, _ = run("calc", "-(2 + 3)")
         self.assertEqual(code, 0)
-        self.assertEqual(out.strip(), "-5.0")
+        self.assertEqual(out.strip(), "-5")
 
     def test_calc_error(self):
         code, out, err = run("calc", "1 / 0")

@@ -17,16 +17,16 @@ HELP_TEXT = """toolkit: консольный набор утилит (кальк
 """
 def build_parcer(): #конструктор командной строки
     parser = argparse.ArgumentParser(
-    prog="toolkit",
-    description="Консольный набор утилит: калькулятор и конвертер величин",)
-    subparsers = parser.add_subparsers(dest="command", required=True)
-    calc_parser = subparsers.add_parser("calc", help="вычислить выражение")
-    calc_parser.add_argument("expression", help='выражение, например "2 * (2 + 6)"')
+    prog = "toolkit",
+    description = "Консольный набор утилит: калькулятор и конвертер величин",)
+    subparsers = parser.add_subparsers(dest = "command", required = True)
+    calc_parser = subparsers.add_parser("calc", help = "вычислить выражение")
+    calc_parser.add_argument("expression", help = 'выражение, например "2 * (2 + 6)"')
 
-    conv_parser = subparsers.add_parser("convert", help="перевести величину")
-    conv_parser.add_argument("value", help="число")
-    conv_parser.add_argument("--from", dest="from_unit", required=True, help="исходная единица измерения")#значение сохраняется под парметром from_unit
-    conv_parser.add_argument("--to", dest="to_unit", required=True, help="конечная единица измерения")#значение сохраняется под парметром to_unit
+    conv_parser = subparsers.add_parser("convert", help = "перевести величину")
+    conv_parser.add_argument("value", help = "число")
+    conv_parser.add_argument("--from", dest = "from_unit", required = True, help = "исходная единица измерения")#значение сохраняется под парметром from_unit
+    conv_parser.add_argument("--to", dest = "to_unit", required = True, help = "конечная единица измерения")#значение сохраняется под парметром to_unit
     return parser
 
 def prepare_args(args):
@@ -51,7 +51,7 @@ def main(argv=None):
         else:
             result = convert(args.value, args.from_unit, args.to_unit)
     except ToolkitError as error:
-        print(error, file=sys.stderr) #любая ошибка - дочерняя от ToolkitError, а значит один except ловит все ошибки
+        print(error, file = sys.stderr) #любая ошибка - дочерняя от ToolkitError, а значит один except ловит все ошибки
         return 2 #без команды - ошибка 2
     print(result)
     return 0

@@ -35,7 +35,7 @@ def convert (value, from_unit, to_unit):
     if g1 == 'temperature':
         from_unit = from_unit.lower()
         to_unit = to_unit.lower()
-        if value < ABSOLUTE_ZERO[from_unit]:
+        if value < ABSOLUTE_ZERO[from_unit] or value < ABSOLUTE_ZERO[to_unit]:
             raise ConvertError("Температура ниже абсолютного нуля!")
         celcius = to_celc(value, from_unit)
         result = from_celc(value, to_unit)

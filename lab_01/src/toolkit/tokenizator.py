@@ -11,22 +11,21 @@ def tokenize(expression):
             i += 1
         elif two == "//":
             token.append(('oper',two))
-            i+=2
+            i += 2
         elif ch in "+-*/%":
             token.append(('oper',ch))
-            i+=1
+            i += 1 
         elif expression[i] == "." or expression[i] in "0123456789":
             start = i
             while i < len(expression) and (expression[i]=="." or expression[i] in "0123456789"):
-                i+=1
+                i += 1
             text = expression[start:i]
             text = float(text)
             token.append(('numb',text))
         elif ch in "()":
-            i+=1
+            i += 1
             token.append(('paren',ch))
         else:
-            pass
             raise CalcError(f"Недопустимый символ: {ch!r}")
     return token
 
